@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import DisplayCount from "./DisplayCount";
 import { connect } from "react-redux";
+import { deleteTodo } from "../redux/actions/todo";
 
-const DisplayTodo = ({ todos }) => {
+const DisplayTodo = ({ todos, deleteTodo }) => {
   //   const [todos, setTodos] = useState([
   //     {
   //       title: "First Title",
@@ -27,6 +28,12 @@ const DisplayTodo = ({ todos }) => {
                     <li className="list-group-item" key={index}>
                       <h4>{todoItem.title}</h4>
                       <p>{todoItem.description}</p>
+                      <button
+                        onClick={(event) => deleteTodo(todoItem.id)}
+                        className="btn btn-danger"
+                      >
+                        Delete
+                      </button>
                     </li>
                   ))}
                 </ul>
@@ -44,6 +51,8 @@ const mapStateToProps = (state) => {
   return { todos: state.todosItem };
 };
 
-const mapDispatchToProps = (dispatch) => {};
+const mapDispatchToProps = (dispatch) => ({
+  deleteTodo: (id) => dispatch(deleteTodo(id)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(DisplayTodo);

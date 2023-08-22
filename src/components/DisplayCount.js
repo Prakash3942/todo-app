@@ -1,15 +1,19 @@
 import React from "react";
+import { connect } from "react-redux";
 
-const DisplayCount = () => {
+const DisplayCount = ({ todos }) => {
   return (
     <>
       <div className="card">
         <div className="card-body">
-          <h4>Number of Todos: 46</h4>
+          <h4>Number of Todos: {todos.length}</h4>
         </div>
       </div>
     </>
   );
 };
 
-export default DisplayCount;
+const mapStateToProps = (state) => ({ todos: state.todosItem });
+const mapDispatchToProps = (dispatch) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(DisplayCount);

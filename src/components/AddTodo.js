@@ -2,18 +2,21 @@ import React, { useState } from "react";
 import DisplayCount from "./DisplayCount";
 import { addTodo } from "../redux/actions/todo";
 import { connect } from "react-redux";
+import { v4 } from "uuid";
 
 const AddTodo = ({ addTodo }) => {
   const [todo, setTodo] = useState({
     title: "",
     description: "",
+    id: "",
   });
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // add todo in store
-    addTodo(todo);
-    console.log(todo);
+
+    addTodo({ ...todo, id: v4() });
+    // console.log(todo);
     setTodo({
       title: "",
       description: "",
