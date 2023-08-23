@@ -6,13 +6,13 @@ export const addTodo = (todo) => ({
   payload: todo,
 });
 
-//delete todo
+//delete todo actions
 export const deleteTodo = (id) => ({
   type: DELETE_TODO,
   payload: id,
 });
 
-// update todo
+// update todo actions
 export const updateTodo = (todo, id) => ({
   type: UPDATE_TODO,
   payload: { todo: todo, todoId: id },
